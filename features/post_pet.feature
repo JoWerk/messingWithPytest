@@ -8,3 +8,4 @@ Feature: Tests pertaining to the POST /pet endpoint
   Scenario: Unsuccessful request with invalid id
     When I send a POST request to POST_PET_URL with body {"id": "invalid_id", "name": "test name"}
     Then the request response should be 400
+

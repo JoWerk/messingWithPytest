@@ -29,15 +29,20 @@ def send_request(url, method, data=None):
 
 
 def update_request_url(context, url):
-    url = getattr(urls, url)
-    if "{" in url and "}" in url:
-        tmp = deepcopy(url)
-        while "{" in tmp:
-            tmp = url.split("{")[1]
-            tmp = tmp.split("}")
-            path_var = tmp[0]
-            tmp = tmp[1]
+    try:
+        url = getattr(urls, url)
+        if "{" in url and "}" in url:
+            tmp = deepcopy(url)
+            while "{" in tmp:
+                tmp = url.split("{")[1]
+                tmp = tmp.split("}")
+                path_var = tmp[0]
+                tmp = tmp[1]
 
-            url = url.replace("{" + path_var + "}", str(context[path_var]))
+                url = url.replace("{" + path_var + "}", str(context[path_var]))
+
+    except AttributeError:
+        url = urls.BASE_URL + url
+
 
     return url

@@ -6,3 +6,7 @@ Feature: Tests pertaining to the GET /pet endpoint
     And I save the value for id in the last response as pet_id
     When I send a get request to GET_PET_URL
     Then the request response should be 200
+
+  Scenario: Retrieve a pet with the pet_id missing
+    When I send a GET request to /pet/
+    Then the request response should be 405
