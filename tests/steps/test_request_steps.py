@@ -18,7 +18,7 @@ def send_request_step(context, method, url, data=None):
 def check_response_status(request_result, status):
     logging.info("The response status code from the previous request was " + str(request_result.status_code))
 
-    assert request_result.status_code == status
+    assert request_result.status_code == status, f"The expected status code was {status} but the actual status code was {str(request_result.status_code)}"
 
 
 @step(parsers.parse("I save the value for {response_key} in the last response as {context_key}"))

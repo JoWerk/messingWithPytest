@@ -1,5 +1,6 @@
 import json
 import logging
+
 from copy import deepcopy
 
 import requests
@@ -43,6 +44,5 @@ def update_request_url(context, url):
 
     except AttributeError:
         url = urls.BASE_URL + url
-
 
     return url
